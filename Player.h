@@ -22,6 +22,8 @@ public:
 
     void collectWinnings(int winnings);
 
+    void collectDebt(int winnings);
+
     const string& getName() const;
 
     int getBalance() const;
