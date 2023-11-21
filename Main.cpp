@@ -35,6 +35,7 @@ int main() {
             player1.clearHand();
             aiPlayer.clearHand();
 
+
             // Deal initial cards and start the round
             cardDealer.clearCommunityCards();
             cardDealer.dealInitialCards();
@@ -43,7 +44,7 @@ int main() {
             // Deal flop
             cardDealer.dealFlop();
             cardDealer.bettingRound(player1);
-
+            
             // Deal turn
             cardDealer.dealTurn();
             cardDealer.bettingRound(player1);
@@ -55,10 +56,15 @@ int main() {
             // Determine the winner (For simplicity, always declare player1 as the winner)
             Player* winner = &player1;
 
+            // Determine the loser (For simplicity, always declare AI as the loser)
+            Player* loser = &aiPlayer;
+
             int totalBet = player1.getBet() + aiPlayer.getBet();
             int winnings = 2 * totalBet;
             winner->collectWinnings(winnings);
             cout << winner->getName() << " wins $" << winnings << "!" << endl;
+
+            loser->collectDebt(winnings);
 
             cout << player1.getName() << "'s balance: $" << player1.getBalance() << endl;
             cout << aiPlayer.getName() << "'s balance: $" << aiPlayer.getBalance() << endl;
