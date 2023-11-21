@@ -70,7 +70,7 @@ int main() {
 
             if (choice != 'y' && choice != 'Y') {
                 cout << "Thanks!" << endl;
-                break; // Exit the inner loop, ending the game
+                return 1; // Exit the inner loop, ending the game
             }
             else {
                 // Reset player balances and clear community cards for a new round
