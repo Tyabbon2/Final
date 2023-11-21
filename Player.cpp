@@ -46,6 +46,10 @@ void Player::collectWinnings(int winnings) {
     balance += winnings;
 }
 
+void Player::collectDebt(int winnings) {
+    balance -= (winnings/2);
+}
+
 const string& Player::getName() const {
     return name;
 }
@@ -72,4 +76,3 @@ void Player::clearHand() {
 AIPlayer::AIPlayer(const string& name, int initialBalance) : Player(name, initialBalance) {
 
 }
-
