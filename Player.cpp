@@ -34,6 +34,10 @@ void Player::placeBet() {
     balance -= bet;
 }
 
+const vector<Card*>& Player::getHand() const {
+    return hand;
+}
+
 int Player::getHandStrength() const {
     int strength = 0;
     for (const Card* card : hand) {
@@ -47,7 +51,7 @@ void Player::collectWinnings(int winnings) {
 }
 
 void Player::collectDebt(int winnings) {
-    balance -= (winnings/2);
+    balance -= (winnings / 2);
 }
 
 const string& Player::getName() const {
