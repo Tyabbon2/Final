@@ -17,7 +17,8 @@ public:
 
     int getRank() const;
 
-    char getSuit() const;
+    Suit getSuit() const;
+
 
 
 private:
