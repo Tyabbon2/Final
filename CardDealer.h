@@ -23,11 +23,13 @@ public:
 
     void clearCommunityCards();
 
+    vector<Card*>& getCommunityCards();
+
 private:
     Deck& deck;
     Player& player;
     AIPlayer& aiPlayer;
-    vector<const Card*> communityCards;
+    vector<Card*> communityCards;
     bool endRound;
 
 };
