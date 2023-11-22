@@ -1,5 +1,6 @@
 // CardDealer.cpp
 #include "CardDealer.h"
+#include "Deck.h"
 #include <iostream>
 
 using namespace std;
@@ -21,6 +22,8 @@ void CardDealer::dealInitialCards() {
 
     // Display initial cards for the player
     player.displayHand(true);
+
+
 }
 
 void CardDealer::dealFlop() {
@@ -35,6 +38,7 @@ void CardDealer::dealFlop() {
 
     // Display community cards after dealing the flop
     displayCommunityCards();
+
 }
 
 void CardDealer::dealTurn() {
@@ -46,6 +50,7 @@ void CardDealer::dealTurn() {
 
     // Display community cards after dealing the turn
     displayCommunityCards();
+
 }
 
 void CardDealer::dealRiver() {
@@ -90,4 +95,9 @@ void CardDealer::displayCommunityCards() const {
 //clear the cards
 void CardDealer::clearCommunityCards() {
     communityCards.clear();
+}
+
+
+vector<Card*>& CardDealer::getCommunityCards() {
+    return communityCards;
 }
