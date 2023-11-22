@@ -34,6 +34,7 @@ public:
 
     void clearHand();
 
+    const vector<Card*>& getHand() const;
 
 
 private:
