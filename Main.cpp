@@ -6,6 +6,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <iostream>
+#include "HandRanking.h"
 
 using namespace std;
 
@@ -35,7 +36,6 @@ int main() {
             player1.clearHand();
             aiPlayer.clearHand();
 
-
             // Deal initial cards and start the round
             cardDealer.clearCommunityCards();
             cardDealer.dealInitialCards();
@@ -44,7 +44,7 @@ int main() {
             // Deal flop
             cardDealer.dealFlop();
             cardDealer.bettingRound(player1);
-            
+
             // Deal turn
             cardDealer.dealTurn();
             cardDealer.bettingRound(player1);
@@ -53,18 +53,25 @@ int main() {
             cardDealer.dealRiver();
             cardDealer.bettingRound(player1);
 
-            // Determine the winner (For simplicity, always declare player1 as the winner)
-            Player* winner = &player1;
+            cout << endl;
+            player1.displayHand(true);
+            aiPlayer.displayHand(true);
+            cout << endl;
 
-            // Determine the loser (For simplicity, always declare AI as the loser)
-            Player* loser = &aiPlayer;
+            // Evaluate hands
+
+            HandRank player1Ranking = HandRanking::rankHand(player1.getHand(), cardDealer.getCommunityCards());
+            HandRank aiPlayerRanking = HandRanking::rankHand(aiPlayer.getHand(), cardDealer.getCommunityCards());
+
+            Player* winner = (player1Ranking > aiPlayerRanking) ? &player1 : &aiPlayer;
+            Player* loser = (winner == &player1) ? &aiPlayer : &player1;
 
             int totalBet = player1.getBet() + aiPlayer.getBet();
             int winnings = 2 * totalBet;
             winner->collectWinnings(winnings);
-            cout << winner->getName() << " wins $" << winnings << "!" << endl;
+            loser->collectDebt(totalBet); // Adjust balance for the loser
 
-            loser->collectDebt(winnings);
+            cout << winner->getName() << " wins $" << winnings << "!" << endl;
 
             cout << player1.getName() << "'s balance: $" << player1.getBalance() << endl;
             cout << aiPlayer.getName() << "'s balance: $" << aiPlayer.getBalance() << endl;
