@@ -15,6 +15,10 @@ int Card::getRank() const {
     return rank;
 }
 
+Card::Suit Card::getSuit() const {
+    return suit;
+}
+
 //Function to get the suit 
 string Card::getSuitString() const {
     switch (suit) {
